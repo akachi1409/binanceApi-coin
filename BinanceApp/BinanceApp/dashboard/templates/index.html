@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Bootstrap Example</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+      integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+      crossorigin="anonymous"
+    />
+    <script
+      src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+      integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+      integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+      integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+      crossorigin="anonymous"
+    ></script>
+    <style>
+      body {
+        background-color: #eef1e6;
+      }
+      .awesome-green {
+        color: #09bd5c !important;
+      }
+      .awesome-red {
+        color: #bd4b09 !important;
+      }
+
+      .awesome-black {
+        color: #31342b !important;
+      }
+      .title {
+        font-size: 4rem;
+        font-weight: bolder;
+      }
+      .title-desc {
+        font-size: 1.5rem;
+        font-weight: bolder;
+      }
+      .title-date {
+        font-size: 2rem;
+        font-weight: bolder;
+        background-color: #f8fff9;
+        margin-top: 30px;
+      }
+      .info-title {
+        font-size: 1rem;
+        color: #2b2e23;
+        font-weight: bolder;
+      }
+      .info-content {
+        font-size: 1rem;
+        font-weight: bolder;
+        background-color: #f8fff9;
+        margin: 1rem auto;
+        width: 75%;
+        padding: 1rem;
+        height: 3.5rem;
+      }
+      .log-content {
+        font-size: 1rem;
+        font-weight: bolder;
+        background-color: #f8fff9;
+        margin: 0.5rem auto;
+        width: 95%;
+        padding: 0.5rem;
+        height: 3.5rem;
+      }
+      .awesome-green-background {
+        background-color: #c4e0ad;
+      }
+      .awsome-white-background {
+        background-color: #f8fff9;
+      }
+      .bottom-line {
+        border-bottom: 2px solid #a4a79c;
+        padding-bottom: 1.5rem;
+      }
+      .log-container {
+        height: 20rem;
+        overflow: scroll;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12">
+          <div class="awesome-green float-right title-date p-2">{{date}}</div>
+          <div class="float-left">
+            <div class="awesome-green title">KRIPTIC</div>
+            <div class="awesome-black title-desc">Trends & smart trades</div>
+          </div>
+        </div>
+      </div>
+      <div class="row mt-3">
+        <div class="col-md-3">
+          <div class="info-title text-center">Total Crypto</div>
+          <div class="info-content awesome-green-background">
+            <div class="float-left awesome-black ml-5">239B</div>
+            <div class="float-right">+6%</div>
+          </div>
+        </div>
+        <div class="col-md-3">
+          <div class="info-title text-center">Top Coin Today</div>
+          <div class="info-content awesome-white-background">
+            <div class="float-left awesome-black ml-5">239B</div>
+            <div class="float-right">+6%</div>
+          </div>
+        </div>
+        <div class="col-md-3">
+          <div class="info-title text-center">Top Coin Yesterday</div>
+          <div class="info-content awesome-white-background">
+            <div class="float-left awesome-black ml-5">239B</div>
+            <div class="float-right">+6%</div>
+          </div>
+        </div>
+        <div class="col-md-3">
+          <div class="info-title text-center">Top Coin Last 7 Days</div>
+          <div class="info-content awesome-white-background">
+            <div class="float-left awesome-black ml-5">239B</div>
+            <div class="float-right">+6%</div>
+          </div>
+        </div>
+      </div>
+      <div class="row mt-5">
+        <div class="col-md-3">
+          <h2 class="text-center bottom-line">1 MIN</h2>
+          <div class="log-container mt-3">
+            {% for coin in coins_1m %}
+            <div class="log-content awesome-white-background">
+              <div class="float-left awesome-black ml-1">
+                <div>{{ coin.symbol }}</div>
+
+                <div>{{ coin.volume }}$</div>
+              </div>
+              {% if coin.percent >= 0 %}
+              <div class="float-right awesome-green">+{{ coin.percent }}%</div>
+              {% else %}
+              <div class="float-right awesome-red">{{ coin.percent }}%</div>
+              {% endif %}
+            </div>
+            {% endfor %}
+          </div>
+        </div>
+        <div class="col-md-3">
+          <h2 class="text-center bottom-line">5 MIN</h2>
+          <div class="log-container mt-3">
+            {% for coin in coins_5m %}
+            <div class="log-content awesome-white-background">
+              <div class="float-left awesome-black ml-1">
+                <div>{{ coin.symbol }}</div>
+
+                <div>{{ coin.volume }}$</div>
+              </div>
+              {% if coin.percent >= 0 %}
+              <div class="float-right awesome-green">+{{ coin.percent }}%</div>
+              {% else %}
+              <div class="float-right awesome-red">{{ coin.percent }}%</div>
+              {% endif %}
+            </div>
+            {% endfor %}
+          </div>
+        </div>
+        <div class="col-md-3">
+          <h2 class="text-center bottom-line">15 MIN</h2>
+          <div class="log-container mt-3">
+            {% for coin in coins_15m %}
+            <div class="log-content awesome-white-background">
+              <div class="float-left awesome-black ml-1">
+                <div>{{ coin.symbol }}</div>
+
+                <div>{{ coin.volume }}$</div>
+              </div>
+              {% if coin.percent >= 0 %}
+              <div class="float-right awesome-green">+{{ coin.percent }}%</div>
+              {% else %}
+              <div class="float-right awesome-red">{{ coin.percent }}%</div>
+              {% endif %}
+            </div>
+            {% endfor %}
+          </div>
+        </div>
+        <div class="col-md-3">
+          <h2 class="text-center bottom-line">1 HOUR</h2>
+          <div class="log-container mt-3">
+            {% for coin in coins_1h %}
+            <div class="log-content awesome-white-background">
+              <div class="float-left awesome-black ml-1">
+                <div>{{ coin.symbol }}</div>
+
+                <div>{{ coin.volume }}$</div>
+              </div>
+              {% if coin.percent >= 0 %}
+              <div class="float-right awesome-green">+{{ coin.percent }}%</div>
+              {% else %}
+              <div class="float-right awesome-red">{{ coin.percent }}%</div>
+              {% endif %}
+            </div>
+            {% endfor %}
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+  <footer>
+    <script>
+      var tick = function () {
+        location.reload();
+      };
+      var s = setInterval(tick, 1000 * 60);
+    </script>
+  </footer>
+</html>
